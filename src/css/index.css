@@ -1,0 +1,11 @@
+@font-face {
+	font-family: "Cunia";
+	src: url("./fonts/Cunia\ Bold\ 700.otf") format("opentype");
+}
+    
+*, *::before, *::after {
+	font-family: 'Cunia', sans-serif;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
