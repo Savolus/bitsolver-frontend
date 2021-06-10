@@ -1,0 +1,137 @@
+.site-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+	background-color: #0B51C6;
+}
+
+.site-header a {
+    color: #fff;
+}
+
+.header-container {
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+	height: 100%;
+}
+
+.header-nav {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30%;
+}
+
+.header-nav-ul {
+	display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.header-self {
+    font-size: 18px;
+}
+
+.header-self,
+.header-nav-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    border-radius: 6.5px;
+    transition: background-color .25s;
+}
+
+.header-self {
+    width: 12%;
+}
+
+.header-user {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+}
+
+.header-samlluser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.header-samlluser-avatart {
+    border-radius: 40%;
+    object-fit: cover; 
+    object-position: center;
+    height: 59.5px;
+    width: 59.5px;
+}
+
+.header-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.header-sign-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    margin: 0 2%;
+    height: 85%;
+    border-radius: 6.5px;
+    width: 50%;
+    transition: background-color .25s;
+}
+
+.header-nav-li {
+    width: 100%;
+    margin: 0 2%;
+}
+
+.header-nav-li:first-of-type {
+    margin-left: 0;
+}
+
+.header-nav-li:last-of-type {
+    margin-right: 0;
+}
+
+.header-self:hover,
+.header-nav-li:hover,
+.header-sign-button:hover {
+    cursor: pointer;
+	background-color: rgba(35, 95, 199, .85);
+}
+
+.header-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+}
+
+.header-search {
+    height: 85%;
+    width: 100%;
+    border-radius: 6.5px;
+    outline: none;
+    padding: 5px 15px;
+    color: #0B51C6;
+    border: none;
+    border: 1px solid grey;
+}

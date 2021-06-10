@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
+import Header from './components/general/header/Header'
+
 import Home from './pages/Home'
 import Posts from './pages/Posts'
 
@@ -21,6 +23,7 @@ export default () => {
 	return (
 		<>
 			<BrowserRouter>
+				<Header />
 				<Switch>
 					<Route path='/' exact component={ Home }/>
 					<Route path='/posts' component={ Posts }/>
