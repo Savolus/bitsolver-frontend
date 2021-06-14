@@ -1,0 +1,51 @@
+.form-container {
+  border-radius: 6px;
+  border: 1px solid grey;
+  padding: 25px;
+  width: 400px;
+}
+
+.sign-row {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+
+    margin-top: 35px;
+  }
+
+  & label {
+    text-align: center;
+    margin-bottom: 7.5px;
+  }
+
+  & input {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background: transparent;
+    border: 1px solid grey;
+    color: #0B51C6;
+
+    &[type=submit] {
+      color: #fff;
+      cursor: pointer;
+      padding: 20px 50px;
+      width: fit-content;
+      font-size: 18px;
+      background-color: #0B51C6;
+      transition:  .25s;
+
+      &:hover {
+        background-color: rgb(19, 175, 32);
+        border-radius: 7.5px;
+        transform: scale(1.1);
+      }
+    }
+  }
+}

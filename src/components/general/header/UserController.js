@@ -1,11 +1,14 @@
-import Sign from "./Sign"
+import { useSelector } from "react-redux"
 import SmallUser from "./SmallUser"
+import Sign from "./Sign"
 
-export default ({ isAuth = false }) => {
+export default () => {
+	const accessor = useSelector(state => state.accessor.value)
+
 	return (
 		<div className='header-user'>
 			{
-				!isAuth && <Sign /> || <SmallUser />
+				!accessor && <Sign /> || <SmallUser />
 			}
 		</div>
 	)
