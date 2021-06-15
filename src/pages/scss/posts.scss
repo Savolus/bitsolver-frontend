@@ -7,12 +7,19 @@
 
 .post-card {
   display: flex;
-  border: 1px solid grey;
+  box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
+  transition: .25s;
   border-radius: 4px;
   padding: 10px;
   width: 512px;
-  margin: 4px;
+  margin: 5px;
   height: 240px;
+
+  &:hover {
+    box-shadow: 0 0 7.5px 0px rgba(20, 88, 206, 0.5);
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
 
   .post-card-user-profile-picture {
     display: flex;
@@ -42,7 +49,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-left: 1px solid grey; // remove
+    border-left: 1px solid rgba(20, 88, 206, 0.25); // remove
 
     .post-card-title {
       display: block;

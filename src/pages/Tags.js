@@ -15,7 +15,7 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`http://bitsolver.herokuapp.com/api/categories?page=${page}&size=5`)
+    const { data } = await axios.get(`http://bitsolver.herokuapp.com/api/categories?page=${page}`)
   
     setTags(data)
     setIsLoading(false)
