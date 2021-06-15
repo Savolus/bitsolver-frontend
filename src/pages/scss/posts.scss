@@ -21,25 +21,45 @@
     cursor: pointer;
   }
 
-  .post-card-user-profile-picture {
+  .post-card-general {
     display: flex;
-    justify-content: center;
-    //align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     margin-right: 10px;
 
-    .post-card-user-avatar {
-      border-radius: 50%;
-      object-fit: cover; 
-      object-position: center;
-      height: 50px;
-      width: 50px;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -o-user-select: none;
-      user-select: none;
-      box-shadow: 0px 0px 5px 1px rgba(20, 88, 206, 0.308);
+    .post-card-user-profile-picture {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .post-card-user-avatar {
+        border-radius: 50%;
+        object-fit: cover; 
+        object-position: center;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        box-shadow: 0px 0px 5px 1px rgba(20, 88, 206, 0.308);
+      }
+    }
+
+    .post-card-rating-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 5px;
+
+      .post-card-action {
+        font-weight: bold;
+        font-family: 'Cunia', sans-serif;
+        font-size: 24px;
+      }
     }
   }
 

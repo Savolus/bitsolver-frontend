@@ -12,8 +12,17 @@ export default ({ id, title, content, user, tags }) => {
   
   return (
     <div data-id={id} className='post-card'>
-      <div className='post-card-user-profile-picture'>
-        <img src={profilePicture} className='post-card-user-avatar' />
+      <div className='post-card-general'>
+        <div className='post-card-user-profile-picture'>
+          <img src={profilePicture} className='post-card-user-avatar' />
+        </div>
+        <div className='post-card-rating-container'>
+          <span className='post-card-action'>&#8743;</span>
+          <code className='post-card-rating'>
+            0
+          </code>
+          <span className='post-card-action'>&#8744;</span>
+        </div>
       </div>
       <div className='post-card-info'>
         <span className='post-card-title'>
@@ -22,9 +31,6 @@ export default ({ id, title, content, user, tags }) => {
         <p className='post-card-content-preview'>
           { content }
         </p>
-        <code className='post-card-rating'>
-          0
-        </code>
         <div className='post-card-tags'>
           {
             tags.map(({ _id, title }) => {
