@@ -1,0 +1,29 @@
+.site-paginator {
+  font-family: 'Cunia', sans-serif;
+  background-color: rgb(20, 88, 206);
+  padding: 2.5px 7.5px;
+  width: fit-content;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+
+  span {
+    display: block;
+    user-select: none;
+    padding: 0 5px;
+  }
+
+  .paginate-action {
+    cursor: pointer;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+}

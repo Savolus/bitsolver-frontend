@@ -10,14 +10,16 @@
   flex-direction: column;
   margin: 20px 0;
 
+  & a {
+    color: #0B51C6;
+  }
+
   &:first-of-type {
     margin-top: 0;
   }
 
   &:last-of-type {
     margin-bottom: 0;
-
-    margin-top: 35px;
   }
 
   & label {
@@ -37,13 +39,15 @@
       cursor: pointer;
       padding: 20px 50px;
       width: fit-content;
-      font-size: 18px;
+      font-size: 16px;
       background-color: #0B51C6;
       transition:  .25s;
+      font-family: 'Cunia', sans-serif;
 
       &:hover {
         background-color: rgb(19, 175, 32);
         border-radius: 7.5px;
+        border: 1px solid #fff;
         transform: scale(1.1);
       }
     }

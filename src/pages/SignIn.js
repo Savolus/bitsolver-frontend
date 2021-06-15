@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom/'
+import { useHistory, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
@@ -43,7 +43,7 @@ export default () => {
 
       console.log('LOGGED')
 
-      history.push('/')
+      history.push('/posts')
     } catch(e) {
       console.log(e)
     }
@@ -74,6 +74,11 @@ export default () => {
         </div>
         <div className='sign-row flex-center'>
           <input type='submit' value='Sign in' />
+        </div>
+        <div className='sign-row flex-center'>
+          <span>
+            Don't have an account? <Link to='/signup'>Sign up!</Link>
+          </span>
         </div>
       </form>
     </div>

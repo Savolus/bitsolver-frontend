@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
-import SmallUser from "./SmallUser"
+
+import SmallUser from "../../users/SmallUser"
 import Sign from "./Sign"
 
 export default () => {

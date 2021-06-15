@@ -4,6 +4,10 @@
 	align-items: center;
 	height: 70px;
 	background-color: #0B51C6;
+
+    & * {
+        font-weight: bold;
+    }
 }
 
 .site-header a {
@@ -23,21 +27,19 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 30%;
+    width: 25%;
 }
 
 .header-nav-ul {
 	display: flex;
     list-style-type: none;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     width: 100%;
 }
 
-.header-self {
-    font-size: 18px;
-}
+
 
 .header-self,
 .header-nav-li {
@@ -47,10 +49,16 @@
     height: 85%;
     border-radius: 6.5px;
     transition: background-color .25s;
+    font-size: 18px;
 }
 
 .header-self {
+	font-family: 'Cunia', sans-serif;
     width: 12%;
+    
+    h1 {
+        font-size: 24px;
+    }
 }
 
 .header-user {
@@ -58,7 +66,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12%;
+    width: 17.5%;
 }
 
 .header-samlluser {
@@ -70,11 +78,13 @@
 }
 
 .header-samlluser-avatart {
-    border-radius: 40%;
+    border-radius: 50%;
     object-fit: cover; 
     object-position: center;
-    height: 59.5px;
-    width: 59.5px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .header-sign {

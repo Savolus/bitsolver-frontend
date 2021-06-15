@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import axios from "axios"
 import './scss/sign.scss'
 
@@ -98,6 +99,11 @@ export default () => {
         </div>
         <div className='sign-row flex-center'>
           <input type='submit' value='Sign up' />
+        </div>
+        <div className='sign-row flex-center'>
+          <span>
+            Already have an account? <Link to='/signin'>Sign in!</Link>
+          </span>
         </div>
       </form>
     </div>

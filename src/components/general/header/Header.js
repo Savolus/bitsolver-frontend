@@ -10,7 +10,11 @@ export default () => {
 		<header className='site-header'>
 			<div className='header-container'>
 				<div className='header-self'>
-					<Link to='/'>BITSOLVER</Link>
+					<Link to='/'>
+						<h1>
+							BITSOLVER
+						</h1>
+					</Link>
 				</div>
 				<Nav />
 				<Search />

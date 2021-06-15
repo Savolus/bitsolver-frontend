@@ -2,9 +2,12 @@
 	font-family: "Cunia";
 	src: url("./fonts/Cunia\ Bold\ 700.otf") format("opentype");
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
     
 *, *::before, *::after {
-	font-family: 'Cunia', sans-serif;
+	// font-family: 'Cunia', sans-serif;
+	font-family: 'Nunito', sans-serif;
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
@@ -25,11 +28,47 @@ a {
 
 .site-main {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	padding-top: 40px;
+	height: calc(100vh - 70px);
+}
+
+.site-small-header {
+	display: flex;
+	align-items: center;
+	width: 70%;
+	height: 70px;
+	padding-left: 20px;
+}
+
+.site-data {
+	width: 70%;
+	display: grid;
+	grid-template-columns: 4fr 1fr; // change if need
+	margin-bottom: 20px;
+	// background-color: burlywood;
 }
 
 .flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+code {
+	display: block;
+	background-color: rgba(179, 184, 190, 0.808);
+	padding: 2.5px 7.5px;
+	width: fit-content;
+	font-weight: bold;
+	border-radius: 4px;
+	margin-bottom: 5px;
+	color: #fff;
+}
+
+.loader {
+	grid-column: 1/5;
 	display: flex;
 	justify-content: center;
 	align-items: center;

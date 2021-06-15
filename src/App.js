@@ -5,9 +5,11 @@ import Header from './components/general/header/Header'
 
 import Home from './pages/Home'
 import Posts from './pages/Posts'
-import Register from './pages/Register'
-import Login from './pages/Login'
+import Users from './pages/Users'
 import Cookies from 'js-cookie'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import Tags from './pages/Tags'
 
 axios.interceptors.request.use(
   config => {
@@ -30,9 +32,11 @@ export default () => {
 				<main className='site-main'>
 					<Switch>
 						<Route path='/' exact component={ Home }/>
-						<Route path='/register' component={ Register }/>
-						<Route path='/login' component={ Login }/>
+						<Route path='/signin' component={ SignIn }/>
+						<Route path='/signup' component={ SignUp }/>
 						<Route path='/posts' component={ Posts }/>
+						<Route path='/users' component={ Users }/>
+						<Route path='/tags' component={ Tags }/>
 					</Switch>
 				</main>
 			</BrowserRouter>
