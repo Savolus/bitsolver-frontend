@@ -1,26 +1,26 @@
-.users {
+.posts {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
   grid-column: 1 / 5; // according to site-data grid tamplate
 }
 
-.user-card {
+.post-card {
   display: flex;
   border: 1px solid grey;
   border-radius: 4px;
   padding: 10px;
-  width: 326px;
+  width: 512px;
   margin: 4px;
-  height: 120px;
+  height: 240px;
 
-  .user-card-profile-picture {
+  .post-card-user-profile-picture {
     display: flex;
     justify-content: center;
     //align-items: center;
     margin-right: 10px;
 
-    .user-card-avatar {
+    .post-card-user-avatar {
       border-radius: 50%;
       object-fit: cover; 
       object-position: center;
@@ -36,7 +36,7 @@
     }
   }
 
-  .user-card-info {
+  .post-card-info {
     padding: 0 10px;
     width: 160px;
     display: flex;
@@ -44,7 +44,7 @@
     justify-content: space-between;
     border-left: 1px solid grey; // remove
 
-    .user-card-login {
+    .post-card-title {
       display: block;
       background-color: rgb(20, 88, 206);
       //background-color: rgba(20, 88, 206, 0.5);
@@ -55,10 +55,19 @@
       color: #fff;
     }
   
-    .user-card-full-name {
-      white-space: nowrap;
+    .post-card-content-preview {
       overflow: hidden;
       text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      height: 80px;
+    }
+
+    .post-card-tags {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 }

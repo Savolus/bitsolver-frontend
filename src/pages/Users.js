@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-import defaultProfilePicture from '../images/avatar.png'
 import SmallHeader from '../components/general/small-header/SmallHeader'
-import User from '../components/users/User'
-import './scss/users.scss'
 import Paginator from "../components/general/pagination/Paginator"
 import Loader from "../components/general/loader/Loader"
+import defaultProfilePicture from '../images/avatar.png'
+import User from '../components/users/User'
+import './scss/users.scss'
+
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)

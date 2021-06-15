@@ -5,7 +5,9 @@ export default () => {
 		<nav className='header-nav'>
 			<ul className='header-nav-ul'>
 				<li className='header-nav-li'>
-					<Link to='/posts'>Posts</Link>
+					<Link to='/posts'>
+					Posts
+					</Link>
 				</li>
 				<li className='header-nav-li'>
 					<Link to='/users'>Users</Link>
