@@ -17,7 +17,7 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`http://bitsolver.herokuapp.com/api/users?page=${page}&size=8`)
+    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/users?page=${page}&size=8`)
     
     setUsers(data)
     setIsLoading(false)
@@ -32,12 +32,13 @@ export default () => {
             <Loader /> :
             <div className='users'>
               {
-                users.map(({ _id, login, full_name }) => {
+                users.map(({ _id, login, rating, full_name }) => {
                   return <User
                     key={_id}
                     id={_id}
                     login={login}
                     fullName={full_name}
+                    rating={rating}
                     profilePicture={defaultProfilePicture}
                   />
                 })

@@ -15,20 +15,18 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`http://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
+    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
     
     const posts = await Promise.all(
       data.map(async post => {
-        const { data: user } = await axios.get(`http://bitsolver.herokuapp.com/api/users/${post.user}`)
         const categories = await Promise.all(
           post.categories.map(
-            category => axios.get(`http://bitsolver.herokuapp.com/api/categories/${category}`)
+            category => axios.get(`https://bitsolver.herokuapp.com/api/categories/${category}`)
           )
         )
         
         return {
           ...post,
-          user,
           categories: categories.map(({ data }) => data)
         }
       })
@@ -47,12 +45,13 @@ export default () => {
             <Loader /> :
             <div className='posts'>
               {
-                posts.map(({ _id, title, content, user, categories }) => {
+                posts.map(({ _id, title, content, user, rating, categories }) => {
                   return <Post
                     key={_id}
                     id={_id}
                     title={title}
                     content={content}
+                    rating={rating}
                     user={user}
                     tags={categories}
                   />

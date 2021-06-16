@@ -10,6 +10,8 @@ import Cookies from 'js-cookie'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Tags from './pages/Tags'
+import SinglePost from './components/posts/SinglePost'
+import SingleTag from './components/tags/SingleTag'
 
 axios.interceptors.request.use(
   config => {
@@ -34,8 +36,10 @@ export default () => {
 						<Route path='/' exact component={ Home }/>
 						<Route path='/signin' component={ SignIn }/>
 						<Route path='/signup' component={ SignUp }/>
+						<Route path='/posts/:id' component={ SinglePost }/>
 						<Route path='/posts' component={ Posts }/>
 						<Route path='/users' component={ Users }/>
+						<Route path='/tags/:id' component={ SingleTag }/>
 						<Route path='/tags' component={ Tags }/>
 					</Switch>
 				</main>

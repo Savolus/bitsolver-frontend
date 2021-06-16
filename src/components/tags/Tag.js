@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom"
+
 export default ({ id, title, description }) => {
   return (
     <div data-id={id} className='tag-card'>
-      <span className='tag-card-title'>
+      <Link to={`/tags/${id}`} className='tag-card-title'>
         { title }
-      </span>
+      </Link>
       <p className='tag-card-description'>
         { description }
       </p>

@@ -47,7 +47,11 @@ a {
 	display: grid;
 	grid-template-columns: 4fr 1fr; // change if need
 	margin-bottom: 20px;
-	// background-color: burlywood;
+
+	&.single {
+		display: flex;
+		justify-content: center;
+	}
 }
 
 .flex-center {

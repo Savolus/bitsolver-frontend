@@ -1,4 +1,4 @@
-export default ({ id, login, fullName, profilePicture }) => {
+export default ({ id, login, fullName, rating, profilePicture }) => {
   return (
     <div data-id={id} className='user-card'>
       <div className='user-card-general'>
@@ -7,7 +7,7 @@ export default ({ id, login, fullName, profilePicture }) => {
         </div>
         <div className='user-card-rating-container'>
           <code className='user-card-rating'>
-            0
+            { rating }
           </code>
         </div>
       </div>

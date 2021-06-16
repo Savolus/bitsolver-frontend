@@ -17,7 +17,7 @@
 
   &:hover {
     box-shadow: 0 0 7.5px 0px rgba(20, 88, 206, 0.5);
-    transform: translateY(-5px);
+    transform: translateY(-2.5px);
     cursor: pointer;
   }
 
@@ -39,4 +39,68 @@
   border-radius: 5px;
   margin-bottom: 5px;
   color: #fff;
+  margin: 0 2.5px;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.tab-container.single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 512px;
+
+  & > div {
+    margin: 15px 0;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .tag-card {
+    // border: 1px solid grey;
+    box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
+    border-radius: 6px;
+    padding: 10px;
+    width: 512px;
+    margin: 5px;
+    min-height: 125px;
+    height: fit-content;
+    transition: .25s;
+  
+    &:hover {
+      box-shadow: 0 0 7.5px 0px rgba(20, 88, 206, 0.5);
+      transform: translateY(-2.5px);
+      cursor: pointer;
+    }
+  
+    .tag-card-description {
+      padding: 10px 0;
+    }
+  }
+
+  .tag-posts {
+    & > div {
+      margin: 10px 0;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
