@@ -28,7 +28,7 @@ export default () => {
 
   return (
     <>
-      <SmallHeader text='All users' />
+      <SmallHeader data='users' />
       <div className='site-data'>
         {
           isLoading ?

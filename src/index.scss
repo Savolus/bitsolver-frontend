@@ -36,10 +36,16 @@ a {
 
 .site-small-header {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	width: 70%;
 	height: 70px;
-	padding-left: 20px;
+	padding: 0 20px;
+	background-color: aquamarine;
+
+	a {
+		font-family: 'Cunia', sans-serif;
+	}
 }
 
 .site-data {

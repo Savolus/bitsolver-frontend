@@ -3,9 +3,11 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Loader from "../general/loader/Loader"
 import Post from "../posts/Post"
+import Paginator from "../general/pagination/Paginator"
 
 export default () => {
   const { id } = useParams()
+  const [ isLoading, setIsLoading ] = useState(true)
   const [ pageCount, setPageCount ] = useState(1)
   const [ page, setPage ] = useState(1)
   const [ tag, setTag ] = useState(null)
@@ -18,15 +20,25 @@ export default () => {
     const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/categories/${id}/posts?page=${page}&size=4`)
     const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/categories/${id}/posts/pages?size=4`)
 
+    const categoeriesArrayRaw = await Promise.all(
+      posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/posts/${post._id}/categories`))
+    )
+
+    const categoriesArray =  categoeriesArrayRaw.map(({ data }) => data)
+    
     setTag(tag)
-    setPosts(posts)
+    setPosts(posts.map((post, index) => {
+      return {
+        ...post,
+        categories: categoriesArray[index]
+      }
+    }))
     setPageCount(pageCount.pages)
     setIsLoading(false)
   }, [ page ])
 
   return (
     <>
-      <SmallHeader text={`Tag ${tag.title}`} />
       <div className='site-data single'>
         {
           isLoading ?
@@ -42,7 +54,7 @@ export default () => {
               </div>
               <div className='tag-posts'>
                 {
-                  posts.map(({ _id, title, content, user, rating }) => {
+                  posts.map(({ _id, title, content, user, rating, categories }) => {
                     return <Post
                       key={_id}
                       id={_id}
@@ -50,7 +62,7 @@ export default () => {
                       content={content}
                       rating={rating}
                       user={user}
-                      tags={[]}
+                      tags={categories}
                     />
                   })
                 }

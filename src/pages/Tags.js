@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <>
-      <SmallHeader text='All tags' />
+      <SmallHeader data='tags' />
       <div className='site-data'>
         {
           isLoading ?
