@@ -67,7 +67,7 @@ export default () => {
       {
         isLoading ?
           <Loader /> :
-          <div data-id={id} className='post-card single'>
+          <div className='post-card single'>
             <div className='post-card-general'>
               <div className='post-card-user-profile-picture'>
                 <img src={profilePicture} className='post-card-user-avatar' />
@@ -106,8 +106,6 @@ export default () => {
               <div className='post-card-tags'>
                 {
                   post.tags.map(({ _id, title }) => {
-                    console.log(_id, title)
-
                     return <SmallTag
                       key={_id}
                       id={_id}

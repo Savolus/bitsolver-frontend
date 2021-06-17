@@ -10,7 +10,8 @@
   box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
   border-radius: 6px;
   padding: 10px;
-  width: 250px;
+  min-width: 245px;
+  width: calc(16.6% - 10px);
   margin: 5px;
   height: 125px;
   transition: .25s;
@@ -51,14 +52,14 @@
   }
 }
 
-.tab-container.single {
+.tag-container.single {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 512px;
+  width: 1024px;
 
   & > div {
-    margin: 15px 0;
+    margin: 25px 0;
 
     &:first-of-type {
       margin-top: 0;
@@ -74,16 +75,15 @@
     box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
     border-radius: 6px;
     padding: 10px;
-    width: 512px;
+    width: 100%;
     margin: 5px;
-    min-height: 125px;
     height: fit-content;
     transition: .25s;
   
     &:hover {
-      box-shadow: 0 0 7.5px 0px rgba(20, 88, 206, 0.5);
-      transform: translateY(-2.5px);
-      cursor: pointer;
+      box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
+      transform: none;
+      cursor: default;
     }
   
     .tag-card-description {
@@ -92,8 +92,11 @@
   }
 
   .tag-posts {
+    width: 100%;
+    
     & > div {
       margin: 10px 0;
+      width: 100%;
 
       &:first-of-type {
         margin-top: 0;

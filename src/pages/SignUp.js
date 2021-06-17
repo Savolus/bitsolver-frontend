@@ -45,8 +45,8 @@ export default () => {
   }
 
   return (
-    <div className='form-container' onSubmit={submit}>
-      <form className='sign-form'>
+    <div className='form-container'>
+      <form className='sign-form' onSubmit={submit}>
         <div className='sign-row'>
           <label htmlFor='login'>Login:</label>
           <input

@@ -33,9 +33,10 @@ export default () => {
       const { data } = await axios.post('https://bitsolver.herokuapp.com/api/auth/login', postData)
 
       const decoded = jwtDecode(data.access_token) // to get exp
+      const expires = (decoded.exp - decoded.iat) / 60 / 60 / 24
 
       Cookies.set('access_token', data.access_token, {
-        expires: 7, // 7 days
+        expires,
         path: '/'
       })
 
@@ -50,8 +51,8 @@ export default () => {
   }
 
   return (
-    <div className='form-container' onSubmit={submit}>
-      <form className='sign-form'>
+    <div className='form-container'>
+      <form className='sign-form' onSubmit={submit}>
         <div className='sign-row'>
           <label htmlFor='login'>Login:</label>
           <input

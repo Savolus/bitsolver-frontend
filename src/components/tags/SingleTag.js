@@ -43,8 +43,8 @@ export default () => {
         {
           isLoading ?
             <Loader /> :
-            <div className='tab-container single'>
-              <div data-id={id} className='tag-card'>
+            <div className='tag-container single'>
+              <div className='tag-card'>
                 <span className='tag-card-title'>
                   { tag.title }
                 </span>

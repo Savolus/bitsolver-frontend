@@ -1,6 +1,6 @@
 export default ({ id, login, fullName, rating, profilePicture }) => {
   return (
-    <div data-id={id} className='user-card'>
+    <div className='user-card'>
       <div className='user-card-general'>
         <div className='user-card-profile-picture'>
           <img src={profilePicture} className='user-card-avatar' />

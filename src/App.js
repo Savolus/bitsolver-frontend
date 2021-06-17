@@ -12,6 +12,8 @@ import SignUp from './pages/SignUp'
 import Tags from './pages/Tags'
 import SinglePost from './components/posts/SinglePost'
 import SingleTag from './components/tags/SingleTag'
+import CreatePost from './components/posts/CreatePost'
+import Profile from './pages/Profile'
 
 axios.interceptors.request.use(
   config => {
@@ -36,11 +38,13 @@ export default () => {
 						<Route path='/' exact component={ Home }/>
 						<Route path='/signin' component={ SignIn }/>
 						<Route path='/signup' component={ SignUp }/>
+						<Route path='/profile' component={ Profile }/>
+						<Route path='/tags/:id' component={ SingleTag }/>
+						<Route path='/tags' component={ Tags }/>
+						<Route path='/posts/create' component={ CreatePost }/>
 						<Route path='/posts/:id' component={ SinglePost }/>
 						<Route path='/posts' component={ Posts }/>
 						<Route path='/users' component={ Users }/>
-						<Route path='/tags/:id' component={ SingleTag }/>
-						<Route path='/tags' component={ Tags }/>
 					</Switch>
 				</main>
 			</BrowserRouter>

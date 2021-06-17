@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import defaultProfilePicture from '../../images/avatar.png'
 import SmallTag from '../tags/SmallTag'
+import jwtDecode from 'jwt-decode'
 
 export default ({ id, title, content, user, rating, tags }) => {
   const [ profilePicture, setProfilePicture ] = useState(defaultProfilePicture)
@@ -11,11 +13,15 @@ export default ({ id, title, content, user, rating, tags }) => {
   const [ like, setLike ] = useState(null)
 
 	useEffect(async () => {
-    try {
-      const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${user}`)
+    const access_token = Cookies.get('access_token')
 
+    if (access_token) {
+      const decoded = jwtDecode(access_token)
+
+      const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${decoded.sub}`)
+  
       data && setLike({ type: data.type })
-    } catch {}
+    }
 	}, [])
 
   const likePost = async (likeData) => {
@@ -41,7 +47,7 @@ export default ({ id, title, content, user, rating, tags }) => {
   }
   
   return (
-      <div data-id={id} className='post-card'>
+      <div className='post-card'>
         <div className='post-card-general'>
           <div className='post-card-user-profile-picture'>
             <img src={profilePicture} className='post-card-user-avatar' />

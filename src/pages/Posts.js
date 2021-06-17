@@ -19,8 +19,8 @@ export default () => {
     setIsLoading(true)
 
     const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=1`) // make rand
-    const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}`)
-    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages`)
+    const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages?size=4`)
 
     const categoriesArrayRaw = await Promise.all(
       posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/posts/${post._id}/categories`))

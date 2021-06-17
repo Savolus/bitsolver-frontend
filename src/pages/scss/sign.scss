@@ -1,11 +1,6 @@
-.form-container {
-  border-radius: 6px;
-  border: 1px solid grey;
-  padding: 25px;
-  width: 400px;
-}
-
-.sign-row {
+.sign-row,
+.profile-row,
+.creating-post-row {
   display: flex;
   flex-direction: column;
   margin: 20px 0;
@@ -27,12 +22,14 @@
     margin-bottom: 7.5px;
   }
 
-  & input {
-    padding: 10px 15px;
+  & input,
+  & textarea {
+    padding: 10px 12.5px;
     border-radius: 5px;
     background: transparent;
     border: 1px solid grey;
     color: #0B51C6;
+    resize: none;
 
     &[type=submit] {
       color: #fff;
@@ -41,15 +38,42 @@
       width: fit-content;
       font-size: 16px;
       background-color: #0B51C6;
-      transition:  .25s;
+      transition: .25s;
       font-family: 'Cunia', sans-serif;
+      border: none;
+      outline: none;
 
       &:hover {
         background-color: rgb(19, 175, 32);
         border-radius: 7.5px;
-        border: 1px solid #fff;
-        transform: scale(1.1);
       }
     }
   }
+}
+
+.profile-row {
+  .profile-change {
+    border: 1px solid #0B51C6;
+    background-color: rgba(194, 194, 194, 0.15);
+  }
+
+  .profile-avatar {
+    box-shadow: 0px 0px 5px 1px rgba(20, 88, 206, 0.308);
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+}
+
+.profile-row label,
+.creating-post-row label {
+  text-align: start;
 }
