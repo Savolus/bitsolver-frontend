@@ -9,30 +9,29 @@ import './scss/posts.scss'
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
+  const [ pageCount, setPageCount ] = useState(1)
   const [ page, setPage ] = useState(1)
   const [ posts, setPosts ] = useState([])
 
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
-    
-    const posts = await Promise.all(
-      data.map(async post => {
-        const categories = await Promise.all(
-          post.categories.map(
-            category => axios.get(`https://bitsolver.herokuapp.com/api/categories/${category}`)
-          )
-        )
-        
-        return {
-          ...post,
-          categories: categories.map(({ data }) => data)
-        }
-      })
+    const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages`)
+
+    const categoriesArrayRaw = await Promise.all(
+      posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/posts/${post._id}/categories`))
     )
 
-    setPosts(posts)
+    const categoriesArray =  categoriesArrayRaw.map(({ data }) => data)
+
+    setPosts(posts.map((post, index) => {
+      return {
+        ...post,
+        categories: categoriesArray[index]
+      }
+    }))
+    setPageCount(pageCount.pages)
     setIsLoading(false)
   }, [ page ])
 
@@ -63,6 +62,7 @@ export default () => {
       <Paginator
         page={page}
         setPage={setPage}
+        pageCount={pageCount}
       />
     </>
   )

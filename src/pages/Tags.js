@@ -9,15 +9,18 @@ import './scss/tags.scss'
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
+  const [ pageCount, setPageCount ] = useState(1)
   const [ page, setPage ] = useState(1)
   const [ tags, setTags ] = useState([])
 
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=${page}`)
+    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=${page}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/categories/pages`)
   
-    setTags(data)
+    setTags(tags)
+    setPageCount(pageCount.pages)
     setIsLoading(false)
   }, [ page ])
 
@@ -45,6 +48,7 @@ export default () => {
       <Paginator
         page={page}
         setPage={setPage}
+        pageCount={pageCount}
       />
     </>
   )

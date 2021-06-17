@@ -1,6 +1,6 @@
 import './paginator.scss'
 
-export default ({ page, setPage }) => {
+export default ({ page, setPage, pageCount }) => {
   const decrement = () => {
     setPage(prevPage => {
       if (prevPage === 1) {
@@ -13,9 +13,9 @@ export default ({ page, setPage }) => {
 
   const inecrement = () => {
     setPage(prevPage => {
-      // if (prevPage === MAX_PAGE) {
-      //  return prevPage
-      // }
+      if (prevPage === pageCount) {
+       return prevPage
+      }
 
       return prevPage + 1
     })

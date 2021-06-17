@@ -11,15 +11,18 @@ import './scss/users.scss'
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
+  const [ pageCount, setPageCount ] = useState(1)
   const [ page, setPage ] = useState(1)
   const [ users, setUsers ] = useState([])
 
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/users?page=${page}&size=8`)
+    const { data: users } = await axios.get(`https://bitsolver.herokuapp.com/api/users?page=${page}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/users/pages`)
     
-    setUsers(data)
+    setUsers(users)
+    setPageCount(pageCount.pages)
     setIsLoading(false)
   }, [ page ])
 
@@ -49,6 +52,7 @@ export default () => {
       <Paginator
         page={page}
         setPage={setPage}
+        pageCount={pageCount}
       />
     </>
   )
