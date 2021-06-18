@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import defaultProfilePicture from '../../images/avatar.png'
+import Comments from '../comments/Comments'
 import Loader from '../general/loader/Loader'
 import SmallTag from '../tags/SmallTag'
 
@@ -64,59 +65,66 @@ export default () => {
   
   return (
     <div className='site-data single'>
-      {
-        isLoading ?
-          <Loader /> :
-          <div className='post-card single'>
-            <div className='post-card-general'>
-              <div className='post-card-user-profile-picture'>
-                <img src={profilePicture} className='post-card-user-avatar' />
+      <div className='post-comments'>
+        {
+          isLoading ?
+            <Loader /> :
+            <>
+              <div className='post-card single'>
+                <div className='post-card-general'>
+                  <div className='post-card-user-profile-picture'>
+                    <Link to={`/users/${post.user}`} className='fit-avatar'>
+                      <img src={profilePicture} className='post-card-user-avatar' />
+                    </Link>
+                  </div>
+                  <div className='post-card-rating-container'>
+                    <span className='post-card-action' onClick={() => likePost({ type: 'like' })}>
+                      {
+                        !like ?
+                          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
+                          like.type === 'like' ?
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
+                      }
+                    </span>
+                    <code className='post-card-rating'>
+                      { currentRating }
+                    </code>
+                    <span className='post-card-action' onClick={() => likePost({ type: 'dislike' })}>
+                      {
+                        !like ?
+                          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
+                          like.type === 'dislike' ?
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>
+                      }
+                    </span>
+                  </div>
+                </div>
+                <div className='post-card-info'>
+                  <span className='post-card-title'>
+                    { post.title }
+                  </span>
+                  <p className='post-card-content'>
+                    { post.content }
+                  </p>
+                  <div className='post-card-tags'>
+                    {
+                      post.tags.map(({ _id, title }) => {
+                        return <SmallTag
+                          key={_id}
+                          id={_id}
+                          title={title}
+                        />
+                      })
+                    }
+                  </div>
+                </div>
               </div>
-              <div className='post-card-rating-container'>
-                <span className='post-card-action' onClick={() => likePost({ type: 'like' })}>
-                  {
-                    !like ?
-                      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
-                      like.type === 'like' ?
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
-                  }
-                </span>
-                <code className='post-card-rating'>
-                  { currentRating }
-                </code>
-                <span className='post-card-action' onClick={() => likePost({ type: 'dislike' })}>
-                  {
-                    !like ?
-                      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
-                      like.type === 'dislike' ?
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>
-                  }
-                </span>
-              </div>
-            </div>
-            <div className='post-card-info'>
-              <span className='post-card-title'>
-                { post.title }
-              </span>
-              <p className='post-card-content'>
-                { post.content }
-              </p>
-              <div className='post-card-tags'>
-                {
-                  post.tags.map(({ _id, title }) => {
-                    return <SmallTag
-                      key={_id}
-                      id={_id}
-                      title={title}
-                    />
-                  })
-                }
-              </div>
-            </div>
-          </div>
-      }
+              <Comments postId={id} />
+            </>
+        }
+      </div>
     </div>
   )
 }

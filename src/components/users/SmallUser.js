@@ -25,7 +25,7 @@ export default () => {
 		<div className='header-samlluser'>
 			{
 				!user ?
-					<Loader /> :
+					<Loader white small /> :
 				 	<>
 						<Link to='/profile' className='header-samlluser-login'>
 							{ user.login }

@@ -4,7 +4,16 @@
   width: 100%;
 }
 
-.post-card {
+.post-comments,
+.comments {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.post-card,
+.comment-card {
   display: flex;
   box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
   transition: .25s;
@@ -21,18 +30,21 @@
     transform: translateY(-2.5px);
   }
 
-  .post-card-general {
+  .post-card-general,
+  .comment-card-general {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-right: 10px;
 
-    .post-card-user-profile-picture {
+    .post-card-user-profile-picture,
+    .comment-card-user-profile-picture {
       display: flex;
       justify-content: center;
       align-items: center;
   
-      .post-card-user-avatar {
+      .post-card-user-avatar,
+      .comment-card-user-avatar {
         border-radius: 50%;
         object-fit: cover; 
         object-position: center;
@@ -48,7 +60,8 @@
       }
     }
 
-    .post-card-rating-container {
+    .post-card-rating-container,
+    .comment-card-rating-container {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -57,7 +70,8 @@
       height: 100px;
       // background-color: aquamarine;
 
-      .post-card-action {
+      .post-card-action,
+      .comment-card-action {
         font-weight: bold;
         font-family: 'Cunia', sans-serif;
         font-size: 24px;
@@ -76,7 +90,8 @@
     }
   }
 
-  .post-card-info {
+  .post-card-info,
+  .comment-card-info {
     padding: 0 10px;
     width: 100%;
     display: flex;
@@ -107,6 +122,13 @@
       width: 100%;
     }
 
+    .post-card-content,
+    .comment-card-content {
+      height: fit-content;
+      padding: 10px 0;
+      width: 100%;
+    }
+
     .post-card-tags {
       display: flex;
       align-items: center;
@@ -130,7 +152,7 @@
   transition: .25s;
   border-radius: 5px;
   padding: 10px;
-  width: 1024px;
+  width: 70%;
   margin: 5px;
   min-height: 200px;
   height: fit-content;
@@ -215,16 +237,14 @@
       color: #fff;
     }
   
-    .post-card-content {
-      height: fit-content;
-      padding: 10px 0;
-      width: 100%;
-    }
-
     .post-card-tags {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
   }
+}
+
+.comment-card {
+  width: 100%;
 }

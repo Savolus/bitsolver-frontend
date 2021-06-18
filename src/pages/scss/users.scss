@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  grid-column: 1 / 5; // according to site-data grid tamplate
+  grid-column: 1 / -1; // according to site-data grid tamplate
 }
 
 .user-card {
@@ -11,7 +11,7 @@
   transition: .25s;
   border-radius: 5px;
   padding: 10px;
-  min-width: 326px;
+  min-width: 325px;
   width: calc(20% - 10px);
   margin: 5px;
   height: 120px;
@@ -19,7 +19,81 @@
   &:hover {
     box-shadow: 0 0 7.5px 0px rgba(20, 88, 206, 0.5);
     transform: translateY(-2.5px);
-    cursor: pointer;
+  }
+
+  .user-card-general {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 10px;
+
+    .user-card-profile-picture {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .user-card-avatar {
+        border-radius: 50%;
+        object-fit: cover; 
+        object-position: center;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        box-shadow: 0px 0px 5px 1px rgba(20, 88, 206, 0.308);
+      }
+    }
+
+    .user-card-rating-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 5px;
+    }
+  }
+
+  .user-card-info {
+    padding: 0 10px;
+    border-left: 1px solid rgba(20, 88, 206, 0.25); // remove
+
+    .user-card-login {
+      display: block;
+      background-color: rgb(20, 88, 206);
+      //background-color: rgba(20, 88, 206, 0.5);
+      padding: 2.5px 7.5px;
+      width: fit-content;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+  
+    .user-card-full-name {
+      // white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.user-card.single {
+  display: flex;
+  box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
+  transition: .25s;
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 326px;
+  width: calc(100%);
+  margin: 5px;
+  height: 120px;
+
+  &:hover {
+    box-shadow: 0 0 2.5px 0px rgba(20, 88, 206, 0.5);
+    transform: none;
   }
 
   .user-card-general {

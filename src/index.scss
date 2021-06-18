@@ -39,7 +39,19 @@ a {
 	grid-template-columns: 4fr 1fr; // change if need
 	width: 70%;
 	height: 70px;
-	padding: 0 20px;
+	padding: 0 10px;
+
+	&.single {
+		margin: 10px 0;
+
+		& > div:first-of-type {
+			grid-column: 1 / -1;
+		}
+
+		& > div:empty {
+			display: none;
+		}
+	}
 
 	& > div {
 		display: flex;
@@ -70,6 +82,12 @@ a {
   border: 1px solid grey;
   padding: 25px;
   width: 400px;
+}
+
+.fit-avatar {
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
 }
 
 .site-data {

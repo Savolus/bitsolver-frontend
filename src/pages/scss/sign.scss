@@ -1,6 +1,7 @@
 .sign-row,
 .profile-row,
-.creating-post-row {
+.creating-post-row,
+.creating-comment-row {
   display: flex;
   flex-direction: column;
   margin: 20px 0;
@@ -64,7 +65,6 @@
     object-position: center;
     height: 100px;
     width: 100px;
-    cursor: pointer;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -74,6 +74,17 @@
 }
 
 .profile-row label,
-.creating-post-row label {
+.creating-post-row label,
+.creating-comment-row label {
   text-align: start;
+}
+
+.site-data.single {
+  input {
+    cursor: default;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }
