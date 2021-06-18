@@ -1,13 +1,10 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Cookies from 'js-cookie'
-
-import defaultProfilePicture from '../../images/avatar.png'
 import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
 export default ({ id, content, user, rating }) => {
-  const [ profilePicture, setProfilePicture ] = useState(defaultProfilePicture)
   const [ currentRating, setCurrentRating ] = useState(rating)
   const [ like, setLike ] = useState(null)
 
@@ -49,7 +46,9 @@ export default ({ id, content, user, rating }) => {
       <div className='comment-card'>
         <div className='comment-card-general'>
           <div className='comment-card-user-profile-picture'>
-            <img src={profilePicture} className='comment-card-user-avatar' />
+            <Link to={`/users/${user._id}`} className='fit-avatar'>
+              <img src={ user.avatar } className='comment-card-user-avatar' />
+            </Link>
           </div>
           <div className='comment-card-rating-container'>
             <span className='comment-card-action' onClick={() => likePost({ type: 'like' })}>

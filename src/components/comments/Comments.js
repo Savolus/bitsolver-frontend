@@ -13,7 +13,18 @@ export default ({ postId }) => {
 
     const { data: comments } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${postId}/comments`)
   
-    setComments(comments)
+    const usersRaw = await Promise.all(
+      comments.map(comment => axios.get(`https://bitsolver.herokuapp.com/api/users/${comment.user}`))
+    )
+
+    const users = usersRaw.map(({ data }) => data)
+
+    setComments(comments.map((comment, index) => {
+      return {
+        ...comment,
+        user: users[index]
+      }
+    }))
     setIsLoading(false)
   }, [])
 
