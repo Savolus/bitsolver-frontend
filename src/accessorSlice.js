@@ -7,8 +7,8 @@ export const accessorSlice = createSlice({
     value: Cookies.get('access_token')
   },
   reducers: {
-    getAccessToken: state => {
-      return state.value
+    removeAccessToken: state => {
+      state.value = Cookies.remove('access_token')
     },
     setAccessToken: (state, access_token) => {
       state.value = access_token.payload
@@ -16,6 +16,6 @@ export const accessorSlice = createSlice({
   }
 })
 
-export const { getAccessToken, setAccessToken } = accessorSlice.actions
+export const { removeAccessToken, setAccessToken } = accessorSlice.actions
 
 export default accessorSlice.reducer

@@ -4,7 +4,6 @@ import axios from "axios"
 import SmallHeader from '../components/general/small-header/SmallHeader'
 import Paginator from "../components/general/pagination/Paginator"
 import Loader from "../components/general/loader/Loader"
-import defaultProfilePicture from '../images/avatar.png'
 import User from '../components/users/User'
 import './scss/users.scss'
 
@@ -35,14 +34,14 @@ export default () => {
             <Loader /> :
             <div className='users'>
               {
-                users.map(({ _id, login, rating, full_name }) => {
+                users.map(({ _id, login, rating, avatar, full_name }) => {
                   return <User
                     key={_id}
                     id={_id}
                     login={login}
                     fullName={full_name}
                     rating={rating}
-                    profilePicture={defaultProfilePicture}
+                    avatar={avatar}
                   />
                 })
               }

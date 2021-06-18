@@ -1,17 +1,17 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
-import defaultProfilePicture from '../../images/avatar.png'
-import Comments from '../comments/Comments'
 import Loader from '../general/loader/Loader'
+import Comments from '../comments/Comments'
 import SmallTag from '../tags/SmallTag'
 
 export default () => {
   const { id } = useParams()
   const [ isLoading, setIsLoading ] = useState(true)
   const [ post, setPost ] = useState(null)
-  const [ profilePicture, setProfilePicture ] = useState(defaultProfilePicture)
   const [ currentRating, setCurrentRating ] = useState(0)
   const [ like, setLike ] = useState(null)
 
@@ -24,8 +24,11 @@ export default () => {
       post.categories.map(category => axios.get(`https://bitsolver.herokuapp.com/api/categories/${category}`))
     )
 
+    const { data: user } = await axios.get(`https://bitsolver.herokuapp.com/api/users/${post.user}`) 
+
     post = {
       ...post,
+      user,
       tags: tags.map(({ data }) => data)
     }
 
@@ -34,9 +37,15 @@ export default () => {
     setPost(post)
     setCurrentRating(post.rating)
 
-    const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${post.user}`)
+    const access_token = Cookies.get('access_token')
 
-    data && setLike({ type: data.type })
+    if (access_token) {
+      const decoded = jwtDecode(access_token)
+
+      const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${decoded.sub}`)
+
+      data && setLike({ type: data.type })
+    }
 
     setIsLoading(false)
 	}, [])
@@ -73,8 +82,8 @@ export default () => {
               <div className='post-card single'>
                 <div className='post-card-general'>
                   <div className='post-card-user-profile-picture'>
-                    <Link to={`/users/${post.user}`} className='fit-avatar'>
-                      <img src={profilePicture} className='post-card-user-avatar' />
+                    <Link to={`/users/${post.user._id}`} className='fit-avatar'>
+                      <img src={ post.user.avatar } className='post-card-user-avatar' />
                     </Link>
                   </div>
                   <div className='post-card-rating-container'>

@@ -1,5 +1,6 @@
 .sign-row,
 .profile-row,
+.profile-edit-row,
 .creating-post-row,
 .creating-comment-row {
   display: flex;
@@ -53,12 +54,21 @@
 }
 
 .profile-row {
+  input {
+    outline: none;
+    cursor: default;
+  }
+}
+
+.profile-row,
+.profile-edit-row {
   .profile-change {
     border: 1px solid #0B51C6;
     background-color: rgba(194, 194, 194, 0.15);
   }
 
-  .profile-avatar {
+  .profile-avatar,
+  .profile-edit-avatar {
     box-shadow: 0px 0px 5px 1px rgba(20, 88, 206, 0.308);
     border-radius: 50%;
     object-fit: cover; 
@@ -74,6 +84,7 @@
 }
 
 .profile-row label,
+.profile-edit-row label,
 .creating-post-row label,
 .creating-comment-row label {
   text-align: start;
@@ -86,5 +97,45 @@
     &:focus-visible {
       outline: none;
     }
+  }
+}
+
+.profile-edit {
+  display: flex;
+	background-color: rgba(179, 184, 190, 0.808);
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  font-weight: bold;
+  transition: .25s;
+  color: #fff;
+  height: 40px;
+  width: 40px;
+  right: 20px;
+  top: 20px;
+
+  &:hover {
+    background-color: rgb(20, 88, 206);
+  }
+}
+
+.upload-avatar {
+  display: block;
+  background-color: rgb(20, 88, 206);
+  padding: 5px 10px;
+  width: fit-content;
+  height: fit-content;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 5px;
+  //margin: 0 2.5px;
+  margin-bottom: 10px;
+  transition: .25s;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(35, 95, 199, .85);
   }
 }

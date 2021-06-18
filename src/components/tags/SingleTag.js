@@ -26,10 +26,17 @@ export default () => {
 
     const categoriesArray =  categoeriesArrayRaw.map(({ data }) => data)
     
+    const usersRaw = await Promise.all(
+      posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/users/${post.user}`))
+    )
+
+    const users = usersRaw.map(({ data }) => data)
+
     setTag(tag)
     setPosts(posts.map((post, index) => {
       return {
         ...post,
+        user: users[index],
         categories: categoriesArray[index]
       }
     }))

@@ -31,6 +31,18 @@
   }
 }
 
+.side-tags {
+	.tag-card-title {
+    &:first-of-type {
+      margin-left: 2.5px;
+    }
+  
+    &:last-of-type {
+      margin-right: 2.5px;
+    }
+  }
+}
+
 .tag-card-title {
   display: block;
   background-color: rgb(20, 88, 206);

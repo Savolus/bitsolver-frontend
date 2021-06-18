@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
-
-import defaultProfilePicture from '../../images/avatar.png'
-import Loader from '../general/loader/Loader'
-import axios from 'axios'
-import jwtDecode from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
+import axios from 'axios'
+
+import Loader from '../general/loader/Loader'
 
 export default () => {
-	const [ profilePicture, setProfilePicture ] = useState(defaultProfilePicture)
 	const [ user, setUser ] = useState(null)
 
 	useEffect(async () => {
@@ -31,7 +29,7 @@ export default () => {
 							{ user.login }
 						</Link>
 						<Link to='/profile' className='fit-avatar'>
-							<img src={ profilePicture } className='header-samlluser-avatart' />
+							<img src={ user.avatar } className='header-samlluser-avatart' />
 						</Link>
 				 	</>
 			}

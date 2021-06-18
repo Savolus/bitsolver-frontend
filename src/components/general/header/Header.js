@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
 
 import UserController from "./UserController"
-import Search from "./Search"
-import './header.scss'
 import Nav from "./Nav"
+import './header.scss'
 
 export default () => {
 	return (
@@ -17,7 +16,6 @@ export default () => {
 					</Link>
 				</div>
 				<Nav />
-				<Search />
 				<UserController />
 			</div>
 		</header>

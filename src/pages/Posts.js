@@ -18,7 +18,7 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=1`) // make rand
+    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories`) // make rand
     const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
     const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages?size=4`)
 
@@ -28,10 +28,17 @@ export default () => {
 
     const categoriesArray =  categoriesArrayRaw.map(({ data }) => data)
 
+    const usersRaw = await Promise.all(
+      posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/users/${post.user}`))
+    )
+
+    const users = usersRaw.map(({ data }) => data)
+
     setTags(tags)
     setPosts(posts.map((post, index) => {
       return {
         ...post,
+        user: users[index],
         categories: categoriesArray[index]
       }
     }))

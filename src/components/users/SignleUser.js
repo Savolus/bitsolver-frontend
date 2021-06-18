@@ -1,12 +1,11 @@
-import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import defaultProfilePicture from '../../images/avatar.png'
+import axios from 'axios'
+
 import Loader from "../general/loader/Loader"
 
 export default () => {
   const { id } = useParams()
-  const [ profilePicture, setProfilePicture ] = useState(defaultProfilePicture)
 	const [ user, setUser ] = useState(null)
   const loginRef = useRef()
   const fullNameRef = useRef()
@@ -36,7 +35,7 @@ export default () => {
           <div className='form-container'>
             <form className='profile-form'>
               <div className='profile-row flex-center'>
-                <img src={ profilePicture } className='profile-avatar' />
+                <img src={ user.avatar } className='profile-avatar' />
               </div>
               <div className='profile-row'>
                 <label htmlFor='login'>Login:</label>

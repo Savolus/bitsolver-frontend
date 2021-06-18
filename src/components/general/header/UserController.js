@@ -9,7 +9,9 @@ export default () => {
 	return (
 		<div className='header-user'>
 			{
-				!accessor && <Sign /> || <SmallUser />
+				!accessor ?
+					<Sign /> :
+					<SmallUser />
 			}
 		</div>
 	)
