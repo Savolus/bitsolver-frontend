@@ -10,7 +10,7 @@ export default ({ id, title }) => {
   // onClick={forceRender}
   
   return (
-    <Link to={`/tags/${id}`}  className='tag-card-title'>
+    <Link to={`/tags/${id}`} className='tag-card-title'>
       { title }
     </Link>
   )

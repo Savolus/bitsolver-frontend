@@ -52,7 +52,7 @@
 
 .header-self {
 	font-family: 'Cunia', sans-serif;
-    width: 25%;
+    width: 20%;
     
     h1 {
         font-size: 24px;
@@ -64,7 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    width: 20%;
 
     .header-samlluser {
         display: flex;
@@ -79,12 +79,12 @@
             align-items: center;
             color: #fff;
             font-size: 18px;
-            margin-right: 15px;
+            margin-right: 10px;
             height: 85%;
             transition: background-color .25s;
             border-radius: 6.5px;
             width: fit-content;
-            padding: 10px;
+            padding: 10px 30px;
             
             &:hover {
                 cursor: pointer;

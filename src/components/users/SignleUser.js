@@ -9,7 +9,6 @@ export default () => {
 	const [ user, setUser ] = useState(null)
   const loginRef = useRef()
   const fullNameRef = useRef()
-  const emailRef = useRef()
   const ratingRef = useRef()
 
   useEffect(async () => {
@@ -22,7 +21,6 @@ export default () => {
     if (user) {
       loginRef.current.value = user.login
       fullNameRef.current.value = user.full_name
-      emailRef.current.value = user.email
       ratingRef.current.value = user.rating
     }
   }, [ user ])
@@ -45,18 +43,6 @@ export default () => {
                   name='login'
                   ref={loginRef}
                   onChange={() => isChanged(loginRef, user.login ?? '')}
-                  readOnly
-                  required
-                />
-              </div>
-              <div className='profile-row'>
-                <label htmlFor='email'>Email:</label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  ref={emailRef}
-                  onChange={() => isChanged(emailRef, user.email ?? '')}
                   readOnly
                   required
                 />

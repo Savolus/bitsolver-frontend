@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
 import { useHistory } from 'react-router-dom'
+import SmallHeader from '../general/small-header/SmallHeader'
 
 const styles = {
   option: styles => ({
@@ -69,45 +70,50 @@ export default () => {
   }
 
   return (
-    <div className='form-container' onSubmit={submit}>
-      <form className='post-form'>
-        <div className='creating-post-row'>
-          <label htmlFor='title'>Title:</label>
-          <input
-            type='text'
-            id='title'
-            name='title'
-            placeholder='post title...'
-            required
-          />
+    <>
+      <SmallHeader single title='post' center />
+      <div className='site-data single'>
+        <div className='form-container single' onSubmit={submit}>
+          <form className='post-form'>
+            <div className='creating-post-row'>
+              <label htmlFor='title'>Title:</label>
+              <input
+                type='text'
+                id='title'
+                name='title'
+                placeholder='post title...'
+                required
+              />
+            </div>
+            <div className='creating-post-row'>
+              <label htmlFor='content'>Content:</label>
+              <textarea
+                type='text'
+                id='content'
+                name='content'
+                placeholder='post content...'
+                rows={16}
+                required
+              ></textarea>
+            </div>
+            <div className='creating-post-row'>
+              <label htmlFor='tags'>Categories:</label>
+              <Select
+                options={tags}
+                isMulti
+                id='tags'
+                name='tags'
+                styles={styles}
+                className='nopadding'
+                required
+              />
+            </div>
+            <div className='creating-post-row flex-center'>
+              <input type='submit' value='Create post' />
+            </div>
+          </form>
         </div>
-        <div className='creating-post-row'>
-          <label htmlFor='content'>Content:</label>
-          <textarea
-            type='text'
-            id='content'
-            name='content'
-            placeholder='post content...'
-            rows={8}
-            required
-          ></textarea>
-        </div>
-        <div className='creating-post-row'>
-          <label htmlFor='tags'>Categories:</label>
-          <Select
-            options={tags}
-            isMulti
-            id='tags'
-            name='tags'
-            styles={styles}
-            className='nopadding'
-            required
-          />
-        </div>
-        <div className='creating-post-row flex-center'>
-          <input type='submit' value='Create post' />
-        </div>
-      </form>
-    </div>
+      </div>
+    </>
   )
 }

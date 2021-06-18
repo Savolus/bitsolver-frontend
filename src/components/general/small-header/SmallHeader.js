@@ -1,14 +1,19 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default ({ data, single, postId }) => {
-  const [ className ] = useState(single || '')
+export default ({ data, title, center, single, postId }) => {
+  const [ classNameSingle ] = useState(single || '')
+  const [ classNameCenter ] = useState(center ? 'small-header-center-title' : '')
 
   return (
-    <div className={`site-small-header ${className}`}>
-      <div>
+    <div className={`site-small-header ${classNameSingle}`}>
+      <div className={classNameCenter}>
         <h2>
-          All { data }
+          {
+            data ?
+              `All ${data}` :
+              `Create  ${title}`
+          }
         </h2>
         {
           data === 'posts' ?

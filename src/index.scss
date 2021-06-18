@@ -59,6 +59,13 @@ a {
 		align-items: center;
 	}
 
+	.small-header-center-title {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		grid-column: 1 / -1;
+	}
+
 	a {
 		font-size: 18px;
 		transition: .25s;
@@ -78,11 +85,15 @@ a {
 }
 
 .form-container {
-  border-radius: 6px;
+  border-radius: 10px;
   border: 1px solid grey;
 	position: relative;
   padding: 25px;
   width: 400px;
+
+	&.single {
+		width: 50%;
+	}
 }
 
 .fit-avatar {
