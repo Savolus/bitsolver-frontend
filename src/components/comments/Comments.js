@@ -4,7 +4,7 @@ import Loader from "../general/loader/Loader"
 import SmallHeader from "../general/small-header/SmallHeader"
 import Comment from "./Comment"
 
-export default ({ postId }) => {
+export default ({ postId, toast }) => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ comments, setComments] = useState([])
   
@@ -40,6 +40,7 @@ export default ({ postId }) => {
                   return <Comment
                     key={_id}
                     id={_id}
+                    toast={toast}
                     postId={postId}
                     content={content}
                     user={user}

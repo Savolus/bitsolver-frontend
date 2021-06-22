@@ -1,12 +1,13 @@
+import toast, { Toaster } from 'react-hot-toast'
 import { useEffect, useState } from "react"
 import axios from "axios"
 
 import SmallHeader from '../components/general/small-header/SmallHeader'
 import Paginator from "../components/general/pagination/Paginator"
 import Loader from "../components/general/loader/Loader"
+import SmallTag from "../components/tags/SmallTag"
 import Post from '../components/posts/Post'
 import './scss/posts.scss'
-import SmallTag from "../components/tags/SmallTag"
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
@@ -65,6 +66,7 @@ export default () => {
                       rating={rating}
                       user={user}
                       tags={categories}
+                      toast={toast}
                     />
                   })
                 }
@@ -87,6 +89,9 @@ export default () => {
         page={page}
         setPage={setPage}
         pageCount={pageCount}
+      />
+      <Toaster
+        position="bottom-center"
       />
     </>
   )

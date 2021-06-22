@@ -21,12 +21,12 @@ export default ({ data, edit, title, center, single, postId }) => {
           data === 'posts' ?
 
             <Link to={`/posts/create`}>
-              Create { data.slice(0, data.length) }
+              Create post
             </Link> :
 
             data === 'comments' &&
               <Link to={`/posts/${postId}/comments/create`}>
-                Create { data.slice(0, data.length) }
+                Create comment
               </Link> 
         }
       </div>

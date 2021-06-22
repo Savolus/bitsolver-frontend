@@ -1,19 +1,22 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
+import SmallButtons from '../general/small-buttons/SmallButtons'
 import Loader from '../general/loader/Loader'
 import Comments from '../comments/Comments'
 import SmallTag from '../tags/SmallTag'
-import Edit from '../general/edit/Edit'
 
 export default () => {
   const { id } = useParams()
+  const history = useHistory()
+
   const [ isLoading, setIsLoading ] = useState(true)
-  const [ post, setPost ] = useState(null)
   const [ currentRating, setCurrentRating ] = useState(0)
+  const [ post, setPost ] = useState(null)
   const [ like, setLike ] = useState(null)
   const [ self, setSelf ] = useState(null)
 
@@ -60,8 +63,12 @@ export default () => {
       if (!like) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 1 : -1)
 
+        toast.success(`Post successfuly ${likeData.type}d`)
+
         return setLike(likeData)
       }
+
+      toast.success(`Post successfuly un${likeData.type}d`)
 
       if (likeData.type === like.type) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? -1 : 1)
@@ -69,9 +76,21 @@ export default () => {
       } else {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 2 : -2)
         setLike(likeData)
+
+        toast.success(`Post successfuly ${likeData.type}d`)
       }
     } catch (e) {
-      console.error(e)
+      toast.error(e.response.data.message)
+    }
+  }
+
+  const onDelete = async () => {
+    try {
+      await axios.delete(`https://bitsolver.herokuapp.com/api/posts/${id}`)
+
+      history.push('/posts')
+    } catch(e) {
+      toast.error(e.response.data.message)
     }
   }
   
@@ -84,7 +103,13 @@ export default () => {
             <>
               <div className='post-card single'>
                 {
-                  self && <Edit prefix={`/posts/${id}`} />
+                  self &&
+                    <SmallButtons
+                      isEdit
+                      isDelete
+                      prefix={`/posts/${id}`}
+                      onDelete={onDelete}
+                    />
                 }
                 <div className='post-card-general'>
                   <div className='post-card-user-profile-picture'>
@@ -136,10 +161,16 @@ export default () => {
                   </div>
                 </div>
               </div>
-              <Comments postId={id} />
+              <Comments
+                postId={id}
+                toast={toast}
+              />
             </>
         }
       </div>
+      <Toaster
+        position="bottom-center"
+      />
     </div>
   )
 }

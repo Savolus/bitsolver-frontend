@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import Edit from '../general/edit/Edit'
 
-export default ({ id, postId, content, user, rating }) => {
+import SmallButtons from '../general/small-buttons/SmallButtons'
+
+export default ({ id, postId, content, user, rating, toast }) => {
+  const history = useHistory()
+
   const [ currentRating, setCurrentRating ] = useState(rating)
   const [ like, setLike ] = useState(null)
   const [ self, setSelf ] = useState(null)
@@ -33,8 +36,12 @@ export default ({ id, postId, content, user, rating }) => {
       if (!like) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 1 : -1)
 
+        toast.success(`Post successfuly ${likeData.type}d`)
+
         return setLike(likeData)
       }
+
+      toast.success(`Post successfuly un${likeData.type}d`)
 
       if (likeData.type === like.type) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? -1 : 1)
@@ -42,16 +49,34 @@ export default ({ id, postId, content, user, rating }) => {
       } else {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 2 : -2)
         setLike(likeData)
+
+        toast.success(`Post successfuly ${likeData.type}d`)
       }
     } catch (e) {
-      console.error(e)
+      toast.error(e.response.data.message)
     }
   }
   
+  const onDelete = async () => {
+    try {
+      await axios.delete(`https://bitsolver.herokuapp.com/api/comments/${id}`)
+
+      history.push(`/posts/${postId}`)
+    } catch(e) {
+      toast.error(e.response.data.message)
+    }
+  }
+
   return (
       <div className='comment-card'>
         {
-          self && <Edit prefix={`/posts/${postId}/comments/${id}`} />
+          self &&
+            <SmallButtons
+              isEdit
+              isDelete
+              prefix={`/posts/${postId}/comments/${id}`}
+              onDelete={onDelete}
+            />
         }
         <div className='comment-card-general'>
           <div className='comment-card-user-profile-picture'>

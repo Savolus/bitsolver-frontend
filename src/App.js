@@ -48,7 +48,7 @@ export default () => {
 						<Route path='/tags/:id' component={ SingleTag }/>
 						<Route path='/tags' component={ Tags }/>
 						<Route path='/posts/create' component={ CreatePost }/>
-						<Route path='/posts/:postId/comments/:commentId' component={ EditComment }/>
+						<Route path='/posts/:postId/comments/:commentId/edit' component={ EditComment }/>
 						<Route path='/posts/:postId/comments/create' component={ CreateComment }/>
 						<Route path='/posts/:id/edit' component={ EditPost }/>
 						<Route path='/posts/:id' component={ SinglePost }/>

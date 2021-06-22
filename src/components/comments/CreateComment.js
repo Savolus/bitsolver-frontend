@@ -1,6 +1,5 @@
 import { useHistory, useParams } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
-import { useEffect } from 'react'
 import axios from 'axios'
 
 import SmallHeader from '../general/small-header/SmallHeader'
@@ -19,9 +18,7 @@ export default () => {
     }
 
     try {
-      const { data: comment } = await axios.post(`https://bitsolver.herokuapp.com/api/posts/${postId}/comments`, commentData)
-
-      console.log(comment)
+      await axios.post(`https://bitsolver.herokuapp.com/api/posts/${postId}/comments`, commentData)
 
       history.push(`/posts/${postId}`)
     } catch(e) {

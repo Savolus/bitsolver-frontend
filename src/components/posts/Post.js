@@ -4,10 +4,10 @@ import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
+import SmallButtons from '../general/small-buttons/SmallButtons'
 import SmallTag from '../tags/SmallTag'
-import Edit from '../general/edit/Edit'
 
-export default ({ id, title, content, user, rating, tags }) => {
+export default ({ id, title, content, user, rating, tags, toast }) => {
   const [ currentRating, setCurrentRating ] = useState(rating)
   const [ like, setLike ] = useState(null)
   const [ self, setSelf ] = useState(null)
@@ -35,25 +35,48 @@ export default ({ id, title, content, user, rating, tags }) => {
       if (!like) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 1 : -1)
 
+        toast.success(`Post successfuly ${likeData.type}d`)
+
         return setLike(likeData)
       }
+
+      toast.success(`Post successfuly un${likeData.type}d`)
 
       if (likeData.type === like.type) {
         setCurrentRating(rating => rating += likeData.type === 'like' ? -1 : 1)
         setLike(null)
+
       } else {
         setCurrentRating(rating => rating += likeData.type === 'like' ? 2 : -2)
         setLike(likeData)
+
+        toast.success(`Post successfuly ${likeData.type}d`)
       }
     } catch (e) {
-      console.error(e)
+      toast.error(e.response.data.message)
+    }
+  }
+
+  const onDelete = async () => {
+    try {
+      await axios.delete(`https://bitsolver.herokuapp.com/api/posts/${id}`)
+
+      location.reload()
+    } catch(e) {
+      toast.error(e.response.data.message)
     }
   }
   
   return (
       <div className='post-card'>
         {
-          self && <Edit prefix={`/posts/${id}`} />
+          self &&
+            <SmallButtons
+              isEdit
+              isDelete
+              prefix={`/posts/${id}`}
+              onDelete={onDelete}
+            />
         }
         <div className='post-card-general'>
           <div className='post-card-user-profile-picture'>

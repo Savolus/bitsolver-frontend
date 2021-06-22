@@ -6,10 +6,10 @@ import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from "axios"
 
+import SmallButtons from '../components/general/small-buttons/SmallButtons'
 import Loader from '../components/general/loader/Loader'
 import { removeAccessToken } from '../accessorSlice'
 import './scss/sign.scss'
-import Edit from '../components/general/edit/Edit'
 
 export default () => {
   const dispatch = useDispatch()
@@ -40,11 +40,21 @@ export default () => {
   }, [ user ])
 
   const logout = event => {
-    event.preventDefault()
+    event && event.preventDefault()
 
     dispatch(removeAccessToken())
 
     history.push('/')
+  }
+
+  const onDelete = async () => {
+    try {
+      await axios.delete(`https://bitsolver.herokuapp.com/api/users`)
+
+      logout()
+    } catch(e) {
+      toast.error(e.response.data.message)
+    }
   }
 
   return (
@@ -53,7 +63,12 @@ export default () => {
         !user ?
           <Loader /> :
           <div className='form-container'>
-            <Edit prefix='/profile' />
+            <SmallButtons
+              isEdit
+              isDelete
+              prefix='/profile'
+              onDelete={onDelete}
+            />
             <form className='profile-form' onSubmit={logout}>
               <div className='profile-row flex-center'>
                 <img src={ user.avatar } className='profile-avatar' />
