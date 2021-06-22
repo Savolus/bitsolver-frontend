@@ -9,9 +9,6 @@ export default () => {
   const { postId } = useParams()
   const history = useHistory()
 
-  useEffect(async () => {
-  }, [])
-
   const submit = async event => {
     event.preventDefault()
 

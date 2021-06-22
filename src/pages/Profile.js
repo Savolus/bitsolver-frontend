@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import toast, { Toaster } from 'react-hot-toast'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { Toaster } from 'react-hot-toast'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from "axios"
@@ -9,6 +9,7 @@ import axios from "axios"
 import Loader from '../components/general/loader/Loader'
 import { removeAccessToken } from '../accessorSlice'
 import './scss/sign.scss'
+import Edit from '../components/general/edit/Edit'
 
 export default () => {
   const dispatch = useDispatch()
@@ -52,9 +53,7 @@ export default () => {
         !user ?
           <Loader /> :
           <div className='form-container'>
-            <Link to='/profile/edit' className='profile-edit'>
-              Edit
-            </Link>
+            <Edit prefix='/profile' />
             <form className='profile-form' onSubmit={logout}>
               <div className='profile-row flex-center'>
                 <img src={ user.avatar } className='profile-avatar' />

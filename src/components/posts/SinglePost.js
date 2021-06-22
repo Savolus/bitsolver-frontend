@@ -7,6 +7,7 @@ import axios from 'axios'
 import Loader from '../general/loader/Loader'
 import Comments from '../comments/Comments'
 import SmallTag from '../tags/SmallTag'
+import Edit from '../general/edit/Edit'
 
 export default () => {
   const { id } = useParams()
@@ -14,6 +15,7 @@ export default () => {
   const [ post, setPost ] = useState(null)
   const [ currentRating, setCurrentRating ] = useState(0)
   const [ like, setLike ] = useState(null)
+  const [ self, setSelf ] = useState(null)
 
 	useEffect(async () => {
     setIsLoading(true)
@@ -38,6 +40,10 @@ export default () => {
 
     if (access_token) {
       const decoded = jwtDecode(access_token)
+
+      if (decoded.sub === post.user._id) {
+        setSelf(decoded)
+      }
 
       const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${decoded.sub}`)
 
@@ -77,6 +83,9 @@ export default () => {
             <Loader /> :
             <>
               <div className='post-card single'>
+                {
+                  self && <Edit prefix={`/posts/${id}`} />
+                }
                 <div className='post-card-general'>
                   <div className='post-card-user-profile-picture'>
                     <Link to={`/users/${post.user._id}`} className='fit-avatar'>

@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import Edit from '../general/edit/Edit'
 
-export default ({ id, content, user, rating }) => {
+export default ({ id, postId, content, user, rating }) => {
   const [ currentRating, setCurrentRating ] = useState(rating)
   const [ like, setLike ] = useState(null)
+  const [ self, setSelf ] = useState(null)
 
 	useEffect(async () => {
     const access_token = Cookies.get('access_token')
 
     if (access_token) {
       const decoded = jwtDecode(access_token)
+
+      if (decoded.sub === user._id) {
+        setSelf(decoded)
+      }
 
       const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/comments/${id}/likes/${decoded.sub}`)
   
@@ -44,6 +50,9 @@ export default ({ id, content, user, rating }) => {
   
   return (
       <div className='comment-card'>
+        {
+          self && <Edit prefix={`/posts/${postId}/comments/${id}`} />
+        }
         <div className='comment-card-general'>
           <div className='comment-card-user-profile-picture'>
             <Link to={`/users/${user._id}`} className='fit-avatar'>

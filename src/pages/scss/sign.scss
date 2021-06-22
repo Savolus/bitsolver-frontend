@@ -100,26 +100,6 @@
   }
 }
 
-.profile-edit {
-  display: flex;
-	background-color: rgba(179, 184, 190, 0.808);
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  position: absolute;
-  font-weight: bold;
-  transition: .25s;
-  color: #fff;
-  height: 40px;
-  width: 40px;
-  right: 20px;
-  top: 20px;
-
-  &:hover {
-    background-color: rgb(20, 88, 206);
-  }
-}
-
 .upload-avatar {
   display: block;
   background-color: rgb(20, 88, 206);

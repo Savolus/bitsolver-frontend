@@ -40,6 +40,7 @@ export default ({ postId }) => {
                   return <Comment
                     key={_id}
                     id={_id}
+                    postId={postId}
                     content={content}
                     user={user}
                     rating={rating}

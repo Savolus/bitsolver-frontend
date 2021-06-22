@@ -78,7 +78,7 @@ export default () => {
   const submit = async event => {
     event.preventDefault()
 
-    let isEddited = false
+    let isEddited = false, isFailed = false
     const data = {}
 
     const login = loginRef.current.value
@@ -106,8 +106,8 @@ export default () => {
         dispatch(setAccessToken(Cookies.get('access_token')))
 
         isEddited = true
-        toast.success('Credentials successfuly updated!')
       } catch(e) {
+        isFailed = true
         toast.error(e.response.data.message)
       }
     }
@@ -125,15 +125,17 @@ export default () => {
         dispatch(setAccessToken(Cookies.get('access_token')))
   
         isEddited = true
-        toast.success('Avatar successfuly updated!')
       } catch (e) {
+        isFailed = true
         toast.error(e.response.data.message)
       }
     }
 
-    isEddited ?
-      history.push('/profile') :
-      toast('No changes')
+    if (!isFailed) {
+      isEddited ?
+        history.push('/profile') :
+        toast('No changes')
+    }
   }
 
   return (

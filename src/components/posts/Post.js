@@ -5,16 +5,22 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 
 import SmallTag from '../tags/SmallTag'
+import Edit from '../general/edit/Edit'
 
 export default ({ id, title, content, user, rating, tags }) => {
   const [ currentRating, setCurrentRating ] = useState(rating)
   const [ like, setLike ] = useState(null)
+  const [ self, setSelf ] = useState(null)
 
 	useEffect(async () => {
     const access_token = Cookies.get('access_token')
 
     if (access_token) {
       const decoded = jwtDecode(access_token)
+
+      if (decoded.sub === user._id) {
+        setSelf(decoded)
+      }
 
       const { data } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/likes/${decoded.sub}`)
 
@@ -46,6 +52,9 @@ export default ({ id, title, content, user, rating, tags }) => {
   
   return (
       <div className='post-card'>
+        {
+          self && <Edit prefix={`/posts/${id}`} />
+        }
         <div className='post-card-general'>
           <div className='post-card-user-profile-picture'>
             <Link to={`/users/${user._id}`} className='fit-avatar'>

@@ -1,6 +1,6 @@
+import { useEffect, useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
@@ -36,24 +36,29 @@ const styles = {
 
 export default () => {
   const history = useHistory()
+  const titleRef = useRef()
+  const contentRef = useRef()
+
   const [ tags, setTags ] = useState([])
 
   useEffect(async () => {
     const { data: tags } = await axios.get('https://bitsolver.herokuapp.com/api/categories')
 
-    setTags(tags.map(({ _id, title }) => {
-      return {
-        value: _id,
-        label: title
-      }
-    }))
+    setTags(
+      tags.map(
+        ({ _id, title }) => ({
+          value: _id,
+          label: title
+        })
+      )
+    )
   }, [])
 
   const submit = async event => {
     event.preventDefault()
 
-    const title = event.target.title.value
-    const content = event.target.content.value
+    const title = titleRef.current.value
+    const content = contentRef.current.value
     const tags = event.target.tags
     let categories = []
 
@@ -93,6 +98,7 @@ export default () => {
                 id='title'
                 name='title'
                 placeholder='post title...'
+                ref={titleRef}
                 required
               />
             </div>
@@ -103,6 +109,7 @@ export default () => {
                 id='content'
                 name='content'
                 placeholder='post content...'
+                ref={contentRef}
                 rows={16}
                 required
               ></textarea>

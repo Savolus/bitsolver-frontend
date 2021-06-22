@@ -137,6 +137,24 @@ code {
 	align-items: center;
 }
 
+.edit {
+  display: flex;
+  color: rgb(20, 88, 206);
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  font-weight: bold;
+  transition: .25s;
+  height: fit-content;
+  width: fit-content;
+  right: 15px;
+  top: 15px;
+
+  &:hover {
+    color: rgb(0, 63, 172);
+  }
+}
 
 @media (max-width: 815px) {
   .site-data {
