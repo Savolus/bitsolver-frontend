@@ -20,10 +20,9 @@ export default ({ postId }) => {
     const users = usersRaw.map(({ data }) => data)
 
     setComments(comments.map((comment, index) => {
-      return {
-        ...comment,
-        user: users[index]
-      }
+      comment.user = users[index]
+
+      return comment
     }))
     setIsLoading(false)
   }, [])

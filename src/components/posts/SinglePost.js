@@ -18,7 +18,7 @@ export default () => {
 	useEffect(async () => {
     setIsLoading(true)
 
-    let { data: post } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}`)
+    const { data: post } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}`)
 
     const tags = await Promise.all(
       post.categories.map(category => axios.get(`https://bitsolver.herokuapp.com/api/categories/${category}`))
@@ -26,14 +26,11 @@ export default () => {
 
     const { data: user } = await axios.get(`https://bitsolver.herokuapp.com/api/users/${post.user}`) 
 
-    post = {
-      ...post,
-      user,
-      tags: tags.map(({ data }) => data)
-    }
+    post.user = user
+    post.tags = tags.map(({ data }) => data)
 
     delete post.categories
-    
+
     setPost(post)
     setCurrentRating(post.rating)
 

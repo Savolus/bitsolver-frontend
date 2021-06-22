@@ -1,4 +1,5 @@
 import { useHistory, Link } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
@@ -32,7 +33,7 @@ export default () => {
     try {
       const { data } = await axios.post('https://bitsolver.herokuapp.com/api/auth/login', postData)
 
-      const decoded = jwtDecode(data.access_token) // to get exp
+      const decoded = jwtDecode(data.access_token)
       const expires = (decoded.exp - decoded.iat) / 60 / 60 / 24
 
       Cookies.set('access_token', data.access_token, {
@@ -42,11 +43,9 @@ export default () => {
 
       dispatch(setAccessToken(data.access_token))
 
-      console.log('LOGGED')
-
       history.push('/posts')
     } catch(e) {
-      console.log(e)
+      toast.error(e.response.data.message)
     }
   }
 
@@ -82,6 +81,9 @@ export default () => {
           </span>
         </div>
       </form>
+      <Toaster
+        position="bottom-center"
+      />
     </div>
   )
 }

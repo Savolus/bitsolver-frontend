@@ -1,7 +1,9 @@
-import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
+import { useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+
 import SmallHeader from '../general/small-header/SmallHeader'
 
 const styles = {
@@ -52,7 +54,16 @@ export default () => {
 
     const title = event.target.title.value
     const content = event.target.content.value
-    const categories = [ ...event.target.tags ].map(({ value }) => value)
+    const tags = event.target.tags
+    let categories = []
+
+    if (tags instanceof RadioNodeList) {
+      categories = [ ...tags ]
+    } else {
+      categories = [ tags ]
+    }
+
+    categories = categories.map(({ value }) => value).filter(value => value && value)
 
     const postData = {
       title,
@@ -65,7 +76,7 @@ export default () => {
 
       history.push(`/posts/${post._id}`)
     } catch(e) {
-      console.error(e)
+      toast.error(e.response.data.message)
     }
   }
 
@@ -114,6 +125,9 @@ export default () => {
           </form>
         </div>
       </div>
+      <Toaster
+        position="bottom-center"
+      />
     </>
   )
 }

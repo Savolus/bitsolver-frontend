@@ -1,3 +1,4 @@
+import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import './scss/sign.scss'
@@ -38,9 +39,9 @@ export default () => {
     try {
       await axios.post('https://bitsolver.herokuapp.com/api/auth/register', postData)
 
-      console.log('REGISTERED')
+      toast.success('Profile created')
     } catch(e) {
-      console.log(e)
+      toast.error(e.response.data.message)
     }
   }
 
@@ -106,6 +107,9 @@ export default () => {
           </span>
         </div>
       </form>
+      <Toaster
+        position="bottom-center"
+      />
     </div>
   )
 }

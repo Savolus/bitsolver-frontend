@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import ImageUploader from 'react-images-upload'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -105,26 +106,34 @@ export default () => {
         dispatch(setAccessToken(Cookies.get('access_token')))
 
         isEddited = true
+        toast.success('Credentials successfuly updated!')
       } catch(e) {
-        console.error(e)
+        toast.error(e.response.data.message)
       }
     }
 
     const file = avatar[0]
 
     if (file) {
-      const formData = new FormData()
+      try {
+        const formData = new FormData()
 
-      formData.append('avatar', file)
+        formData.append('avatar', file)
 
-      await axios.post('https://bitsolver.herokuapp.com/api/users/avatar', formData)
+        await axios.post('https://bitsolver.herokuapp.com/api/users/avatar', formData)
     
-      dispatch(setAccessToken(Cookies.get('access_token')))
-
-      isEddited = true
+        dispatch(setAccessToken(Cookies.get('access_token')))
+  
+        isEddited = true
+        toast.success('Avatar successfuly updated!')
+      } catch (e) {
+        toast.error(e.response.data.message)
+      }
     }
 
-    isEddited && history.push('/profile')
+    isEddited ?
+      history.push('/profile') :
+      toast('No changes')
   }
 
   return (
@@ -198,6 +207,9 @@ export default () => {
             </form>
           </div>
       }
+      <Toaster
+        position="bottom-center"
+      />
     </>
   )
 }

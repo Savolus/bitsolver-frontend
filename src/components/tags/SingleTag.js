@@ -34,11 +34,10 @@ export default () => {
 
     setTag(tag)
     setPosts(posts.map((post, index) => {
-      return {
-        ...post,
-        user: users[index],
-        categories: categoriesArray[index]
-      }
+      post.user = users[index]
+      post.categories = categoriesArray[index]
+
+      return post
     }))
     setPageCount(pageCount.pages)
     setIsLoading(false)

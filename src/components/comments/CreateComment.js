@@ -1,6 +1,8 @@
-import axios from 'axios'
-import { useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
+import axios from 'axios'
+
 import SmallHeader from '../general/small-header/SmallHeader'
 
 export default () => {
@@ -26,7 +28,7 @@ export default () => {
 
       history.push(`/posts/${postId}`)
     } catch(e) {
-      console.error(e)
+      toast.error(e.response.data.message)
     }
   }
 
@@ -53,6 +55,9 @@ export default () => {
           </form>
         </div>
       </div>
+      <Toaster
+        position="bottom-center"
+      />
     </>
   )
 }

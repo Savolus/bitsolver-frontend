@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
@@ -107,6 +108,9 @@ export default () => {
             </form>
           </div>
       }
+      <Toaster
+        position="bottom-center"
+      />
     </>
   )
 }
