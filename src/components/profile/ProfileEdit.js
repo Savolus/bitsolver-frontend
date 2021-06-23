@@ -20,7 +20,6 @@ const buttonStyle = {
   fontWeight: 'bold',
   fontSize: '18px',
   borderRadius: '5px',
-  //margin: '0 2.5px',
   marginBottom: '10px',
   transition: '.25s',
   color: '#fff',
@@ -75,7 +74,7 @@ export default () => {
     }
   }, [ user ])
 
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     let isEddited = false, isFailed = false
@@ -144,7 +143,7 @@ export default () => {
         !user ?
           <Loader /> :
           <div className='form-container'>
-            <form className='profile-edit-form' onSubmit={submit}>
+            <form className='profile-edit-form' onSubmit={onSubmit}>
               <div className='profile-edit-row flex-center'>
                 <ImageUploader
                   withIcon

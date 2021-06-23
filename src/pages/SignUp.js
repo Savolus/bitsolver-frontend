@@ -4,7 +4,7 @@ import axios from "axios"
 import './scss/sign.scss'
 
 export default () => {
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     const login = event.target.login.value
@@ -47,7 +47,7 @@ export default () => {
 
   return (
     <div className='form-container'>
-      <form className='sign-form' onSubmit={submit}>
+      <form className='sign-form' onSubmit={onSubmit}>
         <div className='sign-row'>
           <label htmlFor='login'>Login:</label>
           <input

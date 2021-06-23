@@ -1,7 +1,8 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import Loader from "../general/loader/Loader"
+import axios from "axios"
+
 import SmallHeader from "../general/small-header/SmallHeader"
+import Loader from "../general/loader/Loader"
 import Comment from "./Comment"
 
 export default ({ postId, toast }) => {
@@ -24,6 +25,7 @@ export default ({ postId, toast }) => {
 
       return comment
     }))
+    
     setIsLoading(false)
   }, [])
 
@@ -36,8 +38,8 @@ export default ({ postId, toast }) => {
             <Loader /> :
             <div className='comments'>
               {
-                comments.map(({ _id, content, user, rating }) => {
-                  return <Comment
+                comments.map(({ _id, content, user, rating }) =>
+                  <Comment
                     key={_id}
                     id={_id}
                     toast={toast}
@@ -46,7 +48,7 @@ export default ({ postId, toast }) => {
                     user={user}
                     rating={rating}
                   />
-                })
+                )
               }
             </div>
         }

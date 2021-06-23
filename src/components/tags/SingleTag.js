@@ -1,12 +1,14 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import Loader from "../general/loader/Loader"
-import Post from "../posts/Post"
+import axios from "axios"
+
 import Paginator from "../general/pagination/Paginator"
+import Loader from "../general/loader/Loader"
+import { useParams } from "react-router-dom"
+import Post from "../posts/Post"
 
 export default () => {
   const { id } = useParams()
+
   const [ isLoading, setIsLoading ] = useState(true)
   const [ pageCount, setPageCount ] = useState(1)
   const [ page, setPage ] = useState(1)
@@ -60,8 +62,8 @@ export default () => {
               </div>
               <div className='tag-posts'>
                 {
-                  posts.map(({ _id, title, content, user, rating, categories }) => {
-                    return <Post
+                  posts.map(({ _id, title, content, user, rating, categories }) =>
+                    <Post
                       key={_id}
                       id={_id}
                       title={title}
@@ -70,7 +72,7 @@ export default () => {
                       user={user}
                       tags={categories}
                     />
-                  })
+                  )
                 }
               </div>
             </div>

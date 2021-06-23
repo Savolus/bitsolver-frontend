@@ -25,7 +25,7 @@ export default () => {
     }
   }, [ comment ])
 
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     const content = contentRef.current.value
@@ -35,9 +35,7 @@ export default () => {
     }
 
     try {
-      const { data: comment } = await axios.patch(`https://bitsolver.herokuapp.com/api/comments/${commentId}`, commentData)
-
-      console.log(comment)
+      await axios.patch(`https://bitsolver.herokuapp.com/api/comments/${commentId}`, commentData)
 
       history.push(`/posts/${postId}`)
     } catch(e) {
@@ -52,7 +50,7 @@ export default () => {
         !comment ?
           <Loader /> :
           <div className='site-data single'>
-            <div className='form-container single' onSubmit={submit}>
+            <div className='form-container single' onSubmit={onSubmit}>
               <form className='comment-form'>
                 <div className='creating-comment-row'>
                   <label htmlFor='content'>Content:</label>

@@ -6,10 +6,11 @@ import Loader from "../general/loader/Loader"
 
 export default () => {
   const { id } = useParams()
-	const [ user, setUser ] = useState(null)
   const loginRef = useRef()
   const fullNameRef = useRef()
   const ratingRef = useRef()
+
+	const [ user, setUser ] = useState(null)
 
   useEffect(async () => {
     const { data: user } = await axios.get(`https://bitsolver.herokuapp.com/api/users/${id}`)

@@ -61,74 +61,75 @@ export default ({ id, title, content, user, rating, tags, toast }) => {
     try {
       await axios.delete(`https://bitsolver.herokuapp.com/api/posts/${id}`)
 
-      location.reload()
+      // location.reload()
+      toast.success(`Post successfuly deleted`)
     } catch(e) {
       toast.error(e.response.data.message)
     }
   }
   
   return (
-      <div className='post-card'>
-        {
-          self &&
-            <SmallButtons
-              isEdit
-              isDelete
-              prefix={`/posts/${id}`}
-              onDelete={onDelete}
-            />
-        }
-        <div className='post-card-general'>
-          <div className='post-card-user-profile-picture'>
-            <Link to={`/users/${user._id}`} className='fit-avatar'>
-              <img src={ user.avatar } className='post-card-user-avatar' />
-            </Link>
-          </div>
-          <div className='post-card-rating-container'>
-            <span className='post-card-action' onClick={() => likePost({ type: 'like' })}>
-              {
-                !like ?
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
-                  like.type === 'like' ?
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
-              }
-            </span>
-            <code className='post-card-rating'>
-              { currentRating }
-            </code>
-            <span className='post-card-action' onClick={() => likePost({ type: 'dislike' })}>
-              {
-                !like ?
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
-                  like.type === 'dislike' ?
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>
-              }
-            </span>
-          </div>
+    <div className='post-card'>
+      {
+        self &&
+          <SmallButtons
+            isEdit
+            isDelete
+            prefix={`/posts/${id}`}
+            onDelete={onDelete}
+          />
+      }
+      <div className='post-card-general'>
+        <div className='post-card-user-profile-picture'>
+          <Link to={`/users/${user._id}`} className='fit-avatar'>
+            <img src={ user.avatar } className='post-card-user-avatar' />
+          </Link>
         </div>
-        <div className='post-card-info'>
-          <span className='post-card-title'>
-            <Link to={`/posts/${id}`}>
-              { title }
-            </Link>
-          </span>
-          <p className='post-card-content-preview'>
-            { content }
-          </p>
-          <div className='post-card-tags'>
+        <div className='post-card-rating-container'>
+          <span className='post-card-action' onClick={() => likePost({ type: 'like' })}>
             {
-              tags.map(({ _id, title }) => {
-                return <SmallTag
-                  key={_id}
-                  id={_id}
-                  title={title}
-                />
-              })
+              !like ?
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
+                like.type === 'like' ?
+                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg> :
+                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
             }
-          </div>
+          </span>
+          <code className='post-card-rating'>
+            { currentRating }
+          </code>
+          <span className='post-card-action' onClick={() => likePost({ type: 'dislike' })}>
+            {
+              !like ?
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
+                like.type === 'dislike' ?
+                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgb(20, 88, 206)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg> :
+                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill='rgba(179, 184, 190, 0.808)' fillRule="evenodd" clipRule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>
+            }
+          </span>
         </div>
       </div>
-  )
+      <div className='post-card-info'>
+        <span className='post-card-title'>
+          <Link to={`/posts/${id}`}>
+            { title }
+          </Link>
+        </span>
+        <p className='post-card-content-preview'>
+          { content }
+        </p>
+        <div className='post-card-tags'>
+          {
+            tags.map(({ _id, title }) =>
+              <SmallTag
+                key={_id}
+                id={_id}
+                title={title}
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+)
 }

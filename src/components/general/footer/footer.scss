@@ -1,0 +1,116 @@
+.site-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 140px;
+	background-color: #0B51C6;
+
+    & * {
+        font-weight: bold;
+    }
+}
+
+.site-footer a {
+    color: #fff;
+}
+
+.footer-container {
+	width: 60%;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+	height: 100%;
+}
+
+.footer-up,
+.footer-down {
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.footer-down {
+    justify-content: center;
+    color: #fff;
+}
+
+.footer-nav {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+}
+
+.footer-nav-ul {
+	display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+}
+
+.footer-self,
+.footer-nav-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 5rem;
+    transition: background-color .25s;
+    font-size: 18px;
+}
+
+.footer-self {
+	font-family: 'Cunia', sans-serif;
+    width: 26rem;
+    // width: 25%;
+    
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.footer-nav-li {
+    margin: 0 .25rem;
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+        border-radius: inherit;
+        transition: background-color .25s;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(35, 95, 199, .85);
+        }
+    }
+}
+
+.header-nav-li:first-of-type {
+    margin-left: 0;
+}
+
+.header-nav-li:last-of-type {
+    margin-right: 0;
+}
+
+.footer-self:hover {
+    cursor: pointer;
+	background-color: rgba(35, 95, 199, .85);
+}

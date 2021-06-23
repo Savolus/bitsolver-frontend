@@ -9,6 +9,8 @@ import SmallTag from "../components/tags/SmallTag"
 import Post from '../components/posts/Post'
 import './scss/posts.scss'
 
+const size = 4
+
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ pageCount, setPageCount ] = useState(1)
@@ -19,9 +21,9 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories`) // make rand
-    const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=4`)
-    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages?size=4`)
+    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories`)
+    const { data: posts } = await axios.get(`https://bitsolver.herokuapp.com/api/posts?page=${page}&size=${size}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/pages?size=${size}`)
 
     const categoriesArrayRaw = await Promise.all(
       posts.map(post => axios.get(`https://bitsolver.herokuapp.com/api/posts/${post._id}/categories`))

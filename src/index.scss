@@ -15,6 +15,10 @@
 
 body {
 	height: 100vh;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 #bitsolver {
@@ -31,7 +35,7 @@ a {
 	flex-direction: column;
 	align-items: center;
 	padding-top: 40px;
-	height: calc(100vh - 70px);
+	min-height: calc(100vh - 70px);
 }
 
 .site-small-header {
@@ -150,7 +154,8 @@ code {
 }
 
 .edit,
-.delete {
+.delete,
+.links {
   display: flex;
   color: rgb(20, 88, 206);
   justify-content: center;

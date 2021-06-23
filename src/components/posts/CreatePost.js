@@ -44,17 +44,13 @@ export default () => {
   useEffect(async () => {
     const { data: tags } = await axios.get('https://bitsolver.herokuapp.com/api/categories')
 
-    setTags(
-      tags.map(
-        ({ _id, title }) => ({
-          value: _id,
-          label: title
-        })
-      )
-    )
+    setTags(tags.map(({ _id, title }) => ({
+      value: _id,
+      label: title
+    })))
   }, [])
 
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     const title = titleRef.current.value
@@ -89,7 +85,7 @@ export default () => {
     <>
       <SmallHeader single title='post' center />
       <div className='site-data single'>
-        <div className='form-container single' onSubmit={submit}>
+        <div className='form-container single' onSubmit={onSubmit}>
           <form className='post-form'>
             <div className='creating-post-row'>
               <label htmlFor='title'>Title:</label>

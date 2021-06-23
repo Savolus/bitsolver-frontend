@@ -7,6 +7,8 @@ import Loader from "../components/general/loader/Loader"
 import Tag from '../components/tags/Tag'
 import './scss/tags.scss'
 
+const size = 25
+
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ pageCount, setPageCount ] = useState(1)
@@ -16,8 +18,8 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=${page}`)
-    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/categories/pages`)
+    const { data: tags } = await axios.get(`https://bitsolver.herokuapp.com/api/categories?page=${page}&size=${size}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/categories/pages?size=${size}`)
   
     setTags(tags)
     setPageCount(pageCount.pages)

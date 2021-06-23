@@ -8,7 +8,7 @@ export default () => {
   const { postId } = useParams()
   const history = useHistory()
 
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     const content = event.target.content.value
@@ -30,10 +30,12 @@ export default () => {
     <>
       <SmallHeader single title='comment' center />
       <div className='site-data single'>
-        <div className='form-container single' onSubmit={submit}>
+        <div className='form-container single' onSubmit={onSubmit}>
           <form className='comment-form'>
             <div className='creating-comment-row'>
-              <label htmlFor='content'>Content:</label>
+              <label htmlFor='content'>
+                Content:
+              </label>
               <textarea
                 type='text'
                 id='content'

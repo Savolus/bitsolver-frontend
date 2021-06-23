@@ -1,6 +1,6 @@
+import { useHistory, useParams } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { useHistory, useParams } from 'react-router-dom'
 import Select from 'react-select'
 import axios from 'axios'
 
@@ -49,14 +49,10 @@ export default () => {
     const { data: tags } = await axios.get('https://bitsolver.herokuapp.com/api/categories')
     const { data: categories } = await axios.get(`https://bitsolver.herokuapp.com/api/posts/${id}/categories`)
 
-    setTags(
-      tags.map(
-        ({ _id, title }) => ({
-          value: _id,
-          label: title
-        })
-      )
-    )
+    setTags(tags.map(({ _id, title }) => ({
+      value: _id,
+      label: title
+    })))
 
     post.categories = categories.map(({ _id, title }) => ({
       value: _id,
@@ -73,7 +69,7 @@ export default () => {
     }
   }, [ post ])
 
-  const submit = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
 
     const title = titleRef.current.value
@@ -111,7 +107,7 @@ export default () => {
         !post ?
           <Loader /> :
           <div className='site-data single'>
-            <div className='form-container single' onSubmit={submit}>
+            <div className='form-container single' onSubmit={onSubmit}>
               <form className='post-form'>
                 <div className='creating-post-row'>
                   <label htmlFor='title'>Title:</label>

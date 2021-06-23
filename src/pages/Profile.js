@@ -39,7 +39,7 @@ export default () => {
     }
   }, [ user ])
 
-  const logout = event => {
+  const onLogout = event => {
     event && event.preventDefault()
 
     dispatch(removeAccessToken())
@@ -51,7 +51,7 @@ export default () => {
     try {
       await axios.delete(`https://bitsolver.herokuapp.com/api/users`)
 
-      logout()
+      onLogout()
     } catch(e) {
       toast.error(e.response.data.message)
     }
@@ -69,7 +69,7 @@ export default () => {
               prefix='/profile'
               onDelete={onDelete}
             />
-            <form className='profile-form' onSubmit={logout}>
+            <form className='profile-form' onSubmit={onLogout}>
               <div className='profile-row flex-center'>
                 <img src={ user.avatar } className='profile-avatar' />
               </div>

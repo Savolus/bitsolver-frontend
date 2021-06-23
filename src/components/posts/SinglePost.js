@@ -150,13 +150,13 @@ export default () => {
                   </p>
                   <div className='post-card-tags'>
                     {
-                      post.tags.map(({ _id, title }) => {
-                        return <SmallTag
+                      post.tags.map(({ _id, title }) =>
+                        <SmallTag
                           key={_id}
                           id={_id}
                           title={title}
                         />
-                      })
+                      )
                     }
                   </div>
                 </div>

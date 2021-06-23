@@ -7,6 +7,7 @@ import Loader from "../components/general/loader/Loader"
 import User from '../components/users/User'
 import './scss/users.scss'
 
+const size = 16
 
 export default () => {
   const [ isLoading, setIsLoading ] = useState(true)
@@ -17,8 +18,8 @@ export default () => {
   useEffect(async () => {
     setIsLoading(true)
 
-    const { data: users } = await axios.get(`https://bitsolver.herokuapp.com/api/users?page=${page}`)
-    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/users/pages`)
+    const { data: users } = await axios.get(`https://bitsolver.herokuapp.com/api/users?page=${page}&size=${size}`)
+    const { data: pageCount } = await axios.get(`https://bitsolver.herokuapp.com/api/users/pages?size=${size}`)
     
     setUsers(users)
     setPageCount(pageCount.pages)

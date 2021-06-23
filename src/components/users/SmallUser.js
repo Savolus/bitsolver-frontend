@@ -10,8 +10,8 @@ export default () => {
 	const [ user, setUser ] = useState(null)
 
 	useEffect(async () => {
-		// request user profile picture
 		const access_token = Cookies.get('access_token')
+		
 		const decoded = jwtDecode(access_token)
 
 		const { data: user } = await axios.get(`https://bitsolver.herokuapp.com/api/users/${decoded.sub}`)
