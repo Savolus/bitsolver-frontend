@@ -10,7 +10,7 @@ export default () => (
         <Links />
       </div>
       <div className='footer-down'>
-        Copyright © 2021 Savolus. All rights reserved.
+        Copyright © 2021. All rights reserved.
       </div>
     </div>
   </footer>
