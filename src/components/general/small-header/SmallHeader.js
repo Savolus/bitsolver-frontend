@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-const Button = ({ data }) => (
+const Button = ({ data, postId }) => (
   data === 'posts' ?
 
     <Link to={`/posts/create`}>
@@ -39,7 +39,7 @@ export default ({ data, edit, title, center, single, postId }) => {
         <h2>
           { headerTitle }
         </h2>
-        { accessor && <Button data={data} /> }
+        { accessor && <Button data={data} postId={postId} /> }
       </div>
       <div></div> { /* for grid */ }
     </div>
